@@ -4,6 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Snake Game</title>
     <style>
+
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            touch-action: none;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -376,6 +383,43 @@
         if (e.code === "ArrowLeft") changeDirection('left')
         if (e.code === "ArrowRight") changeDirection('right')
     });
+
+
+    let touchStartX = null;
+    let touchStartY = null;
+
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }
+
+    function handleTouchMove(e) {
+        if (!touchStartX || !touchStartY) {
+            return;
+        }
+
+        const distanceX = e.touches[0].clientX - touchStartX;
+        const distanceY = e.touches[0].clientY - touchStartY;
+        const absDistanceX = Math.abs(distanceX);
+        const absDistanceY = Math.abs(distanceY);
+
+        if (absDistanceX > absDistanceY && distanceX > 0) {
+            changeDirection('right');
+        } else if (absDistanceX > absDistanceY && distanceX < 0) {
+            changeDirection('left');
+        } else if (absDistanceY > absDistanceX && distanceY > 0) {
+            changeDirection('down');
+        } else if (absDistanceY > absDistanceX && distanceY < 0) {
+            changeDirection('up');
+        }
+
+        touchStartX = null;
+        touchStartY = null;
+    }
+
+    canvas.addEventListener('touchstart', handleTouchStart, false);
+    canvas.addEventListener('touchmove', handleTouchMove, false);
+
 
     initGame();
     window.addEventListener('resize', initGame);
