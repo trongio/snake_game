@@ -378,10 +378,10 @@
 
 
     document.addEventListener('keyup', (e) => {
-        if (e.code === "ArrowUp") changeDirection('up')
-        if (e.code === "ArrowDown") changeDirection('down')
-        if (e.code === "ArrowLeft") changeDirection('left')
-        if (e.code === "ArrowRight") changeDirection('right')
+        if (e.code === "ArrowUp" || e.code === 'KeyW' ) changeDirection('up')
+        if (e.code === "ArrowDown" || e.code === 'KeyS' ) changeDirection('down')
+        if (e.code === "ArrowLeft" || e.code === 'KeyA' ) changeDirection('left')
+        if (e.code === "ArrowRight" || e.code === 'KeyD' ) changeDirection('right')
     });
 
 
