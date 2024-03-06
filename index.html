@@ -219,8 +219,9 @@
         if (isRestart) {
             GameOverTextEl.classList.add('d-none');
         }
-        widthInBlocks = Math.floor(400 / blockSize);
-        heightInBlocks = Math.floor(400 / blockSize);
+        let width = gameContainer.clientWidth - 40;
+        widthInBlocks = Math.floor(width / blockSize);
+        heightInBlocks = Math.floor(width / blockSize);
         canvas.width = widthInBlocks * blockSize;
         canvas.height = heightInBlocks * blockSize;
         snake = [{x: Math.floor(widthInBlocks / 2), y: Math.floor(heightInBlocks / 2)}];
